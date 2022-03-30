@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CrudAPIAssessmentCore.Dtos.Users.UserListDto>
+@{
+    ViewData["Title"] = "Index";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<h1>Users List</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Midle Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.MidleName</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>
+                    <a href="/user/SignUpForm/@item.Id" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    <button type="button" onclick="deleteUser(@item.Id)" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/js/user.js"></script>
+}

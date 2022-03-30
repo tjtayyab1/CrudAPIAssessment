@@ -1,0 +1,202 @@
+﻿@model CrudAPIAssessmentCore.Dtos.Users.GetUserForEditOutput
+@{
+    ViewData["Title"] = "SignUpForm";
+}
+<link href="~/lib/dropify/dist/css/dropify.min.css" rel="stylesheet" />
+<link href="~/intelinput/build/css/intlTelInput.css" rel="stylesheet" />
+<style>
+    .dropify-wrapper .dropify-message p {
+        font-size: 20px !important;
+    }
+    .iti {
+        width: 100% !important;
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Sign Up Form</h2>
+        <p>Please read and submit the form carefully</p>
+    </div>
+
+</div>
+<div class="card">
+    <div class="card-body">
+        <form id="signUpForm">
+            <div class="row">
+                <input type="hidden" value="@Model.User.Id" id="userId" />
+                <input asp-for="User.PassportPath" type="hidden" class="form-control" />
+                <input asp-for="User.ProfilePath" type="hidden" class="form-control" />
+                <input asp-for="User.SelfiePath" type="hidden" class="form-control" />
+                <input asp-for="User.UtilityBillPath" type="hidden" class="form-control" />
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="FullName">Full Name:</label>
+                        <input type="text" asp-for="User.FullName" required placeholder="Enter your full name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="MidleName">Midle Name:</label>
+                        <input type="text" asp-for="User.MidleName" placeholder="Enter your midle name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Birthday">Birthday:</label>
+                        <input type="date" asp-for="User.Birthday" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Email:</label>
+                        <input type="email" asp-for="User.Email" required placeholder="Enter your email" class="form-control">
+                    </div>
+                    <div class="form-group row">
+                        <label for="Phone" class="col-12">Phone:</label>
+                        <input type="text" id="Phone" asp-for="User.Phone" class="form-control col-12">
+                    </div>
+                    <div class="form-group">
+                        <label for="LocationOfElection">Location of Election (2022):</label>
+                        <select class="form-control" required asp-for="User.LocationOfElection">
+                            <option value="">Select a location</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Sindh">Sindh</option>
+                            <option value="Blochistan">Blochistan</option>
+                            <option value="Islamabad">Islamabad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Address1">Address1:</label>
+                        <input type="text" asp-for="User.Address1" required placeholder="Enter your address" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Address2">Address2:</label>
+                        <input type="text" asp-for="User.Address2" placeholder="Enter your address" class="form-control">
+                    </div>
+                    <label for="Address2 ml-5">Other Nationalities:</label>
+                    <div class="form-check-inline ml-5">
+                        <input type="radio" asp-for="User.OtherNationality" value="true" class="form-check-input">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input type="radio" asp-for="User.OtherNationality" value="false" class="form-check-input">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="LocationOfElection">Nationality:</label>
+                        <select class="form-control" asp-for="User.Country" required>
+                            <option value="">Select a Nationality</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">UK</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Dubai">Dubai</option>
+                            <option value="Suadia">Suadia</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Passport">Passport /ID Image Face & Back</label>
+                        <input name="passport" type="file" data-default-file="@Model.User.PassportPath" class="dropify" data-allowed-file-extensions="jpg png jpeg" data-height="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Profile">Upload Profile</label>
+                        <input name="profile" type="file" data-default-file="@Model.User.ProfilePath" class="dropify" data-allowed-file-extensions="jpg png jpeg" data-height="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="LocationOfElection">Upload Selfie</label>
+                        <input name="selfie" type="file" data-default-file="@Model.User.SelfiePath" class="dropify" data-allowed-file-extensions="jpg png jpeg" data-height="100" />
+                        @*<div id="webcam"></div>*@
+                    </div>
+                    <div class="form-group">
+                        <label for="LocationOfElection">Upload Last Utility Bill</label>
+                        <input name="utility" type="file" data-default-file="@Model.User.UtilityBillPath" class="dropify" data-allowed-file-extensions="jpg png jpeg" data-height="100" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Add Social Media links:</label>
+                        <div class="row mb-2">
+                            <div class="col-md-1 pl-5">
+                                <img src="~/images/facebook.png" width="40" />
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" asp-for="User.FacebookSocialLink" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-1 pl-5">
+                                <img src="~/images/linkedIn.png" width="40" />
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" asp-for="User.LinkedInSocialLink" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-1 pl-5">
+                                <img src="~/images/tweeter.png" width="40" />
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" asp-for="User.TweeterSocialLink" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-1 pl-5">
+                                <img src="~/images/instal.png" width="40" />
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" asp-for="User.InstaSocialLink" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-1 pl-5">
+                                <img src="~/images/youtube.png" width="40" />
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" asp-for="User.YoutubeSocialLink" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="condition" id="terms" class="form-check-input">I agree to the <a href="/Home/Privacy">Terms & Conditions</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 text-right">
+                    <button type="button" onclick="signUp()" class="btn btn-success"> <i class="fa fa-check"></i> Register</button>
+                    <a href="/Home/Index" class="btn btn-primary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/lib/dropify/dist/js/dropify.min.js"></script>
+    <script src="~/intelinput/build/js/intlTelInput.min.js"></script>
+    <script src="~/intelinput/build/js/intlTelInput-jquery.min.js"></script>
+    <script src="~/js/user.js"></script>
+    <script>
+        $('.dropify').dropify();
+        if (@Model.User.Id > 0) {
+            $("#Phone").intlTelInput({
+                initialCountry: "@Model.User.CountryIso",
+
+            });
+        }
+        else {
+            $("#Phone").intlTelInput({
+                initialCountry: "pk"
+            });
+        }
+
+    </script>
+}
